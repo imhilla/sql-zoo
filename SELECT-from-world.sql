@@ -52,3 +52,27 @@ Show per-capita GDP for the trillion dollar countries to the nearest $1000.
 SELECT name, ROUND(gdp/population,-3) 
 FROM world
 WHERE gdp>=1000000000000
+
+--Show the name and capital where the name and the capital have the same number of characters.
+SELECT name, continent
+FROM world
+WHERE LENGTH(name) = LENGTH(capital)
+
+--12.
+--The capital of Sweden is Stockholm. Both words start with the letter 'S'.
+--Show the name and the capital where the first letters of each match. Don't include countries where the name and the capital are the same word.
+--You can use the function LEFT to isolate the first character.
+--You can use <> as the NOT EQUALS operator.
+SELECT name, capital
+FROM world
+WHERE LEFT(name,1) = LEFT(capital, 1) and (name <> capital)
+
+--Find the country that has all the vowels and no spaces in its name.
+SELECT name
+FROM world
+WHERE name LIKE '%e%'
+  AND name LIKE '%a%'
+  AND name LIKE '%i%'
+  AND name LIKE '%o%'
+  AND name LIKE '%u%'
+  AND TRIM(LOWER(name)) NOT LIKE '% %'
