@@ -34,3 +34,13 @@ SELECT dept.name 'Department', COUNT(teacher.name) 'Staff'
 FROM teacher RIGHT JOIN dept
 ON (teacher.dept=dept.id)
 GROUP BY dept.id
+
+--Use CASE to show the name of each teacher followed by 'Sci' if the teacher is 
+--sin dept 1 or 2 and 'Art' otherwise.
+SELECT teacher.name,
+CASE 
+    WHEN dept.id IN (1, 2) THEN 'Sci'
+    ELSE 'Art'  
+END AS teacher
+FROM teacher LEFT JOIN dept
+        ON (teacher.dept=dept.id)
