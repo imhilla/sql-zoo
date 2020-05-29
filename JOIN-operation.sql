@@ -33,6 +33,27 @@ JOIN eteam on game.team1 = eteam.id
 WHERE LOWER(coach) = 'fernando santos'
 
 --List the player for every goal scored in a game where the stadium was 'National Stadium, Warsaw'
+SELECT DISTINCT player
+FROM goal JOIN game ON goal.matchid = game.id 
+WHERE (game.team1='GER' OR game.team2='GER') AND goal.teamid != 'GER' AND game.id = goal.matchid
+
+--Show teamname and the total number of goals scored.
+SELECT teamname,  COUNT(goal.matchid)
+FROM eteam JOIN goal ON eteam.id = goal.teamid
+GROUP BY teamname
+
+--Show the stadium and the number of goals scored in each stadium.
+SELECT stadium,  COUNT(goal.matchid)
+FROM game JOIN goal ON game.id = goal.matchid
+GROUP BY stadium
+
+--For every match involving 'POL', show the matchid, date and the number of goals scored.
+
+
+
+
+
+
 
 
 
