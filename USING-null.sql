@@ -23,3 +23,14 @@ FROM teacher RIGHT JOIN dept
 --Show teacher name and mobile number or '07986 444 2266'
 SELECT name 'Teacher', COALESCE(mobile,  '07986 444 2266' )
 FROM teacher
+
+--Use COUNT to show the number of teachers and the number of mobile phones.
+SELECT COUNT(id) 'Teachers', COUNT(mobile) 'Mobiles'
+FROM teacher
+
+--Use COUNT and GROUP BY dept.name to show each department and the number of staff. 
+--Use a RIGHT JOIN to ensure that the Engineering department is listed.
+SELECT dept.name 'Department', COUNT(teacher.name) 'Staff'
+FROM teacher RIGHT JOIN dept
+ON (teacher.dept=dept.id)
+GROUP BY dept.id
